@@ -1,0 +1,101 @@
+openapi: 3.0.0
+info:
+  title: riot-take-home
+  version: 0.1.0
+servers:
+  -
+    url: 'http://0.0.0.0:9999'
+    description: Localhost
+paths:
+  /decrypt:
+    post:
+      tags:
+        - Encryption
+      description: 'Decrypt previously encrypted payload'
+      operationId: eef6369791f033b8aa372f68dd65116e
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {  }
+      responses:
+        '400':
+          description: 'No payload provided or payload is not a JSON'
+        '200':
+          description: 'Decrypted payload'
+          content:
+            application/json:
+              schema: {  }
+  /encrypt:
+    post:
+      tags:
+        - Encryption
+      description: 'Encrypt the payload'
+      operationId: eb8ac815f025cf9c27ad34358efcb1e0
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {  }
+      responses:
+        '400':
+          description: 'No payload provided or payload is not a JSON'
+        '200':
+          description: 'Encrypted payload'
+          content:
+            application/json:
+              schema: {  }
+  /sign:
+    post:
+      tags:
+        - Signing
+      description: 'Sign the payload'
+      operationId: f41d22526262999b4756a72f187906f4
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              minProperties: 1
+      responses:
+        '400':
+          description: 'No payload provided or payload is not a JSON'
+        '200':
+          description: 'The signature of the payload'
+          content:
+            application/json:
+              schema:
+                properties:
+                  signature: {  }
+                type: object
+  /verify:
+    post:
+      tags:
+        - Signing
+      description: 'Verify the payload against given signature'
+      operationId: 544ecd128994dd7fd2766d28348dd1b2
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                signature:
+                  type: string
+                  minLength: 1
+                data:
+                  minProperties: 1
+                  example: { foo: bar }
+              type: object
+      responses:
+        '400':
+          description: 'No payload provided or payload is not a JSON, or the payload does not match the signature'
+        '204':
+          description: 'Payload is verified'
+tags:
+  -
+    name: Encryption
+    description: Encryption
+  -
+    name: Signing
+    description: Signing

@@ -38,10 +38,5 @@
     "allow-plugins": {
       "php-http/discovery": false
     }
-  },
-  "scripts": {
-    "post-install-cmd": [
-      "./vendor/bin/openapi --output ./public/doc/swagger.yaml src || exit 0"
-    ]
   }
 }

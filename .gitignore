@@ -3,4 +3,3 @@
 *.phar
 .phpunit.result.cache
 .env
-public/doc/swagger.yaml
