@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Gaydamakha\RiotTakeHome\Application;
 
-use Gaydamakha\RiotTakeHome\Application\NoPayloadProvidedException;
+use Gaydamakha\RiotTakeHome\Application\InvalidPayloadProvidedException;
 use Gaydamakha\RiotTakeHome\Application\ProcessPayloadRequestAdapter;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
@@ -26,7 +26,7 @@ class ProcessPayloadRequestAdapterTest extends TestCase
             'getParsedBody' => null,
         ]);
 
-        $this->expectException(NoPayloadProvidedException::class);
+        $this->expectException(InvalidPayloadProvidedException::class);
 
         $this->requestAdapter->fromServerRequestInterface($serverRequest);
     }

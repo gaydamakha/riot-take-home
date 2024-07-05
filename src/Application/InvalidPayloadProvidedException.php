@@ -6,6 +6,6 @@ namespace Gaydamakha\RiotTakeHome\Application;
 
 use Exception;
 
-class NoPayloadProvidedException extends Exception
+class InvalidPayloadProvidedException extends Exception
 {
 }

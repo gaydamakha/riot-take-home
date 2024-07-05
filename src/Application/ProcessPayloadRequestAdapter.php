@@ -10,13 +10,13 @@ use Psr\Http\Message\ServerRequestInterface;
 class ProcessPayloadRequestAdapter
 {
     /**
-     * @throws NoPayloadProvidedException
+     * @throws InvalidPayloadProvidedException
      */
     public function fromServerRequestInterface(ServerRequestInterface $request): ProcessPayloadRequest
     {
         $body = $request->getParsedBody();
         if ($body === null) {
-            throw new NoPayloadProvidedException('No payload provided or payload is not a JSON');
+            throw new InvalidPayloadProvidedException('No payload provided or payload is not a JSON');
         }
         return new ProcessPayloadRequest($request->getParsedBody());
     }

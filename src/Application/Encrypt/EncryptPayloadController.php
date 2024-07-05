@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Gaydamakha\RiotTakeHome\Application\Encrypt;
 
-use Gaydamakha\RiotTakeHome\Application\NoPayloadProvidedException;
+use Gaydamakha\RiotTakeHome\Application\InvalidPayloadProvidedException;
 use Gaydamakha\RiotTakeHome\Application\ProcessPayloadRequestAdapter;
 use Gaydamakha\RiotTakeHome\Domain\Encryption\ProcessPayloadService;
 use Http\Discovery\Psr17FactoryDiscovery;
@@ -33,7 +33,7 @@ readonly class EncryptPayloadController
     {
         try {
             $request = $this->requestAdapter->fromServerRequestInterface($serverRequest);
-        } catch (NoPayloadProvidedException $e) {
+        } catch (InvalidPayloadProvidedException $e) {
             throw new HttpBadRequestException($serverRequest, $e->getMessage());
         }
         $response = $this->service->encrypt($request);
