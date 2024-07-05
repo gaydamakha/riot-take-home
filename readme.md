@@ -14,13 +14,13 @@ To use the default environment variables, you can simply run the following comma
 If you want to use a custom environment, you can copy the `.env.srv` file to `.env` and edit it to your liking.
 ```shell
 ## Generate the swagger documentation
-sh swagger.sh
+sh scripts/swagger.sh
 cp .env.srv .env
 ## Edit the .env file to your liking, and then launch the project
 docker-compose up -d --build
 ```
 
-The project is then available on `localhost:9999`.
+The project is then available on [http://localhost:9999](`http://localhost:9999`)
 
 ## OpenAPI Documentation
 
