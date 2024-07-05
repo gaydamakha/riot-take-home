@@ -14,4 +14,4 @@ The project is then available on `localhost:9999`.
 
 ## OpenAPI Documentation
 
-TODO: add the link
+The swagger documentation is available on `localhost:9999/doc/swagger.yaml`.
