@@ -33,10 +33,12 @@ return [
         $handler->setFormatter(new JsonFormatter());
         $logger->pushHandler($handler);
 
-        $sentryHandler = new SentryMonologHandler(SentrySdk::getCurrentHub(), Logger::WARNING);
+        $sentryHandler = new SentryMonologHandler(SentrySdk::getCurrentHub(), Level::Warning);
         $logger->pushHandler($sentryHandler);
 
         return $logger;
     },
     StringEncryptorInterface::class => get(Base64Encryptor::class),
+    'signing.key' => getenv('SIGNING_KEY'),
+    'signing.algorithm' => getenv('SIGNING_ALGORITHM'),
 ];
