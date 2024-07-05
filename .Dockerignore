@@ -1,0 +1,10 @@
+vendor/
+.github/
+docs/
+tests/
+scripts/
+.env
+.env.srv
+.gitignore
+phpunit.xml
+README.md

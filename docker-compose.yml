@@ -1,0 +1,11 @@
+services:
+  web:
+    container_name: riot-take-home-web
+    build: .
+    environment:
+      - WEB_DOCUMENT_ROOT=/app/public
+    env_file: .env
+    ports:
+      - "9999:80"
+    volumes:
+      - .:/app

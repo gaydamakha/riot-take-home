@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Swagger UI</title>
+    <link rel="stylesheet" type="text/css" href="/doc/http_unpkg.com_swagger-ui-dist@4.14.2_swagger-ui.css" >
+    <style>
+        html
+        {
+            box-sizing: border-box;
+            overflow: -moz-scrollbars-vertical;
+            overflow-y: scroll;
+        }
+        *,
+        *:before,
+        *:after
+        {
+            box-sizing: inherit;
+        }
+
+        body
+        {
+            margin:0;
+            background: #fafafa;
+        }
+    </style>
+</head>
+
+<body>
+<div id="swagger-ui"></div>
+<script src="/doc/http_unpkg.com_swagger-ui-dist@4.14.2_swagger-ui-standalone-preset.js"></script>
+<script src="/doc/http_unpkg.com_swagger-ui-dist@4.14.2_swagger-ui-bundle.js"></script>
+<script>
+    window.onload = function() {
+        window.ui = SwaggerUIBundle({
+            url: window.location.protocol + "//" + window.location.hostname + window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/')) + '/swagger.yaml',
+            validatorUrl : 'https://validator.swagger.io/validator/',
+            dom_id: '#swagger-ui',
+            deepLinking: true,
+            presets: [
+                SwaggerUIBundle.presets.apis,
+                SwaggerUIStandalonePreset
+            ],
+            layout: "StandaloneLayout"
+        })
+
+        // dirty fix for link to online validator
+        const links = document.getElementsByTagName("a");
+        for (let i = 0; i < links.length; i++) {
+            const orig_href = links[i].href;
+            if (orig_href.includes("validator.swagger.io/validator//")) {
+                links[i].href = orig_href.replace("validator//", "validator/");
+            }
+        }
+    }
+</script>
+</body>
+</html>

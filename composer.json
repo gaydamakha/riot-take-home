@@ -1,0 +1,41 @@
+{
+  "name": "gaydamakha/riot-take-home",
+  "description": "Riot's take home exercise for backend developer",
+  "type": "project",
+  "require": {
+    "php": "^8.3",
+    "ext-json": "*",
+    "monolog/monolog": "^3.7.0",
+    "php-di/php-di": "^7.0",
+    "sentry/sdk": "^3.3",
+    "zircote/swagger-php": "^4.10",
+    "vlucas/phpdotenv": "^5.6",
+    "slim/slim": "^4.14.0",
+    "slim/psr7": "^1.2"
+  },
+  "require-dev": {
+    "php-http/discovery": "^1.9",
+    "phpunit/phpunit": "^11.2.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Gaydamakha\\RiotTakeHome\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "gaydamakha",
+      "email": "mikhail.gaydamakha@gmail.com"
+    }
+  ],
+  "config": {
+    "allow-plugins": {
+      "php-http/discovery": false
+    }
+  },
+  "scripts": {
+    "post-install-cmd": [
+      "./vendor/bin/openapi --output ./public/doc/swagger.yaml src || exit 0"
+    ]
+  }
+}
