@@ -33,6 +33,8 @@ if ($staging === Staging::PROD) {
     $builder->writeProxiesToFile(true, ROOT_PATH . '/temp/proxies');
 }
 
+$builder->useAttributes(true);
+
 $builder->addDefinitions(ROOT_PATH . '/app/dependencies.php');
 
 try {
