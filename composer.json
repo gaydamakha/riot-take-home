@@ -22,6 +22,11 @@
       "Gaydamakha\\RiotTakeHome\\": "src/"
     }
   },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\Gaydamakha\\RiotTakeHome\\": "tests/"
+    }
+  },
   "authors": [
     {
       "name": "gaydamakha",
