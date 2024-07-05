@@ -37,7 +37,8 @@ readonly class EncryptPayloadController
             throw new HttpBadRequestException($serverRequest, $e->getMessage());
         }
         $response = $this->service->encrypt($request);
-        return $serverResponse->withBody(Psr17FactoryDiscovery::findStreamFactory()
+        return $serverResponse->withHeader('Content-type', 'application/json')
+            ->withBody(Psr17FactoryDiscovery::findStreamFactory()
             ->createStream(json_encode($response->payload)));
     }
 }
