@@ -6,6 +6,7 @@ namespace Gaydamakha\RiotTakeHome\Application\Decrypt;
 
 use Gaydamakha\RiotTakeHome\Application\InvalidPayloadProvidedException;
 use Gaydamakha\RiotTakeHome\Application\ProcessPayloadRequestAdapter;
+use Gaydamakha\RiotTakeHome\Domain\Encryption\InvalidEncryptedValueException;
 use Gaydamakha\RiotTakeHome\Domain\Encryption\ProcessPayloadService;
 use Http\Discovery\Psr17FactoryDiscovery;
 use Psr\Http\Message\ResponseInterface;
@@ -33,10 +34,10 @@ readonly class DecryptPayloadController
     {
         try {
             $request = $this->requestAdapter->fromServerRequestInterface($serverRequest);
-        } catch (InvalidPayloadProvidedException $e) {
+            $response = $this->service->decrypt($request);
+        } catch (InvalidPayloadProvidedException|InvalidEncryptedValueException $e) {
             throw new HttpBadRequestException($serverRequest, $e->getMessage());
         }
-        $response = $this->service->decrypt($request);
         return $serverResponse->withHeader('Content-type', 'application/json')
             ->withBody(Psr17FactoryDiscovery::findStreamFactory()
             ->createStream(json_encode($response->payload)));

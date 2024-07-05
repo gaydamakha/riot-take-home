@@ -23,10 +23,16 @@ class ProcessPayloadService
         return new ProcessPayloadResponse($responsePayload);
     }
 
+    /**
+     * @throws InvalidEncryptedValueException
+     */
     public function decrypt(ProcessPayloadRequest $request): ProcessPayloadResponse
     {
         $responsePayload = [];
         foreach ($request->payload as $key => $value) {
+            if (!is_string($value)) {
+                throw new InvalidEncryptedValueException("$value cannot be decrypted: is not a string");
+            }
             $decryptedString = $this->stringEncryptor->decrypt($value);
             $responsePayload[$key] = MixedToStringAdapter::to($decryptedString);
         }

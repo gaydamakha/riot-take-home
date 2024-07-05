@@ -59,4 +59,18 @@ class ProcessPayloadServiceTest extends TestCase
             'buz' => 'koko',
         ], $response->payload['bar']);
     }
+
+    public function testDecryptThrowsIfValueIsNotAString(): void
+    {
+        $payload = [
+            'foo' => 123,
+            'bar' => 'encoded_string_2',
+        ];
+
+        $this->stringEncryptor->expects(self::never())
+            ->method('decrypt');
+
+        $this->expectException(InvalidEncryptedValueException::class);
+        $this->service->decrypt(new ProcessPayloadRequest($payload));
+    }
 }
